@@ -41,8 +41,13 @@ const AddNewUserScreen: React.FC<Props> = ({ route }) => {
             return;
         }
 
-        const data = await ApiService.addUserData(title, context);
-        if (data === 201) {
+        let data;
+        {
+            screenType === "edit" ?
+            data = await ApiService.addUserData(title, context) :
+            data = await ApiService.updateUserData(1, title, context)
+        }
+        if (data === 201 || data === 200) {
             console.log("Success");
             {
                 screenType === 'edit' ?
@@ -52,7 +57,6 @@ const AddNewUserScreen: React.FC<Props> = ({ route }) => {
             navigation.goBack();
         } else {
             ToastAndroid.show("SomeThing Went Wrong!", ToastAndroid.SHORT)
-            console.log("Failer");
         }
     };
 

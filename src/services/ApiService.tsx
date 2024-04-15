@@ -12,7 +12,7 @@ export class ApiService {
             return response.data;
         } catch (error) {
             console.error('There was a problem with the API request:', error);
-            throw error; // Re-throw the error to be handled by the caller
+            throw error;
         }
     }
 
@@ -20,6 +20,19 @@ export class ApiService {
         try {
             const url = `${baseUrl}/posts`;
             const response = await axios.post(url, {
+                title: title,
+                body: body,
+            });
+            return response.status;
+        } catch (error) {
+            console.error('Error posting data:', error);
+        }
+    }
+
+    static async updateUserData(id: Number, title: String, body: String) {
+        try {
+            const url = `${baseUrl}/posts/${id}`;
+            const response = await axios.put(url, {
                 title: title,
                 body: body,
             });
