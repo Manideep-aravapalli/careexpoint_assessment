@@ -5,15 +5,13 @@ import { Icon } from 'react-native-elements';
 import { ApiService } from '../services/ApiService';
 import { useNavigation, RouteProp } from '@react-navigation/native';
 
-type RootStackParamList = {
-    AddNewUserScreen: { screenType: string, titlea: string, content: string };
-};
+interface RootStackParamList {
+    screenType: string, titlea: string, content: string;
+}
 
-type AddNewUserScreenRouteProp = RouteProp<RootStackParamList, 'AddNewUserScreen'>;
-
-type Props = {
-    route: AddNewUserScreenRouteProp;
-};
+interface Props {
+    route: RouteProp<{ params: RootStackParamList }, 'params'>;
+}
 
 const AddNewUserScreen: React.FC<Props> = ({ route }) => {
     const { screenType, titlea, content } = route.params;
@@ -44,8 +42,8 @@ const AddNewUserScreen: React.FC<Props> = ({ route }) => {
         let data;
         {
             screenType === "edit" ?
-            data = await ApiService.addUserData(title, context) :
-            data = await ApiService.updateUserData(1, title, context)
+                data = await ApiService.addUserData(title, context) :
+                data = await ApiService.updateUserData(1, title, context)
         }
         if (data === 201 || data === 200) {
             console.log("Success");

@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 8,
+        marginRight:12,
     },
     postContent: {
         fontSize: 16,

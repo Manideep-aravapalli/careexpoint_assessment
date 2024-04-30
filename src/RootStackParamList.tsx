@@ -1,3 +1,4 @@
-export type RootStackParamList = {
-    AddNewUserScreen: { screenType: string, titlea: string, content: string };
-};
+export class RootStackParamList {
+    Home: undefined; 
+    AddNewUserScreen: undefined;
+  }
